@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>数学实验室 · ML / DL / LLM</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="../README.md">FOUNDATIONS<span>机器学习 · 深度学习 · 大语言模型</span></a>
+    <a class="course-link" href="../curriculum/ROADMAP.md">学习路线 ↗</a>
+  </header>
+  <main>
+    <div class="page-title"><div><p class="eyebrow">INTERACTIVE MATH LAB</p><h1>把公式变成看得见的变化。</h1></div><p class="page-intro">先预测，再拖动。用小数字理解大模型的核心运算。</p></div>
+    <div class="tabs" role="tablist" aria-label="选择数学实验">
+      <button id="tab-attention" role="tab" aria-controls="attention-panel" aria-selected="true" class="active" type="button"><span>01</span> 注意力机制</button>
+      <button id="tab-gradient" role="tab" aria-controls="gradient-panel" aria-selected="false" tabindex="-1" type="button"><span>02</span> 梯度下降 · 3D</button>
+    </div>
+
+    <section id="attention-panel" role="tabpanel" aria-labelledby="tab-attention">
+      <div class="experiment-heading"><div><p class="eyebrow">一个查询，三个候选</p><h2>方向如何变成权重？</h2></div><p>拖动查询向量 q 的方向，观察与各个 key 的相似度如何改变输出。</p></div>
+      <div class="attention-workspace">
+        <figure class="diagram"><canvas id="attention-canvas" role="img" aria-label="二维查询、三个键与加权输出向量图">查询和键的方向决定点积；下面表格提供所有得分与权重。</canvas><figcaption><span class="legend-key query">实线 q：查询</span><span class="legend-key key">细线 k：键</span><span class="legend-key output">虚线 o：输出</span></figcaption></figure>
+        <div class="inspector">
+          <div class="control-heading"><label for="query-angle">查询方向 θ</label><output id="query-angle-value" for="query-angle">0°</output></div>
+          <input id="query-angle" type="range" min="-180" max="180" step="1" value="0">
+          <p class="mono readout" id="query-vector">q = [1.000, 0.000]</p>
+          <div class="mask-controls"><label class="check"><input id="causal-mask" type="checkbox"> 因果掩码</label><label for="query-position">查询位置 i <select id="query-position" disabled><option value="1" selected>1</option><option value="2">2</option><option value="3">3</option></select></label></div>
+          <p class="subtle" id="mask-help">当前可读取全部 3 个位置。</p>
+          <table class="attention-table"><caption>得分 s = q·k / √2 → 权重 p = softmax(s)</caption><thead><tr><th scope="col">候选</th><th scope="col">得分</th><th scope="col">权重</th></tr></thead><tbody>
+            <tr><th scope="row">k₁ [1, 0]</th><td id="score-0">0.707</td><td><div class="weight-row"><span id="weight-0">57.6%</span><div class="weight-track"><div id="bar-0" class="weight-bar"></div></div></div></td></tr>
+            <tr><th scope="row">k₂ [0, 1]</th><td id="score-1">0.000</td><td><div class="weight-row"><span id="weight-1">28.4%</span><div class="weight-track"><div id="bar-1" class="weight-bar"></div></div></div></td></tr>
+            <tr><th scope="row">k₃ [−1, 0]</th><td id="score-2">−0.707</td><td><div class="weight-row"><span id="weight-2">14.0%</span><div class="weight-track"><div id="bar-2" class="weight-bar"></div></div></div></td></tr>
+          </tbody></table>
+          <div class="output-result"><span>加权输出 o = Σ pⱼvⱼ</span><strong id="attention-output" class="mono">[0.436, 0.284]</strong><p>本例 v₁ = k₁，v₂ = k₂，v₃ = k₃；一般模型中 K 与 V 不同。</p></div>
+          <p id="attention-status" class="sr-only" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="lesson-notes"><div><span class="note-number">试一试</span><h3>先把 q 转到 90°。</h3><p>预测哪一个 key 得分最高，再开启因果掩码并选位置 1。为什么“最相似”也可能不能被读取？</p></div><div><span class="note-number">对照公式</span><h3 class="formula">Attention(Q,K,V) = softmax(QKᵀ/√dₖ + M)V</h3><p>这里 n = 3，dₖ = dᵥ = 2，只展示一行查询；得分与权重形状为 1 × 3，输出为 1 × 2。因果掩码把未来位置的得分设为 −∞。</p></div></div>
+      <p class="scope-note">这里只计算一次查询；q 的方向与位置 i 是独立实验变量，改变 i 只控制可见的键。完整模型会先由 XW 得到 Q、K、V，并逐行计算，详见第一课。这些二维向量是人为设定的教学例子，不是真实词向量；Attention 权重不能直接证明模型的推理原因。</p>
+    </section>
+
+    <section id="gradient-panel" role="tabpanel" aria-labelledby="tab-gradient" hidden>
+      <div class="experiment-heading"><div><p class="eyebrow">一个曲面，两项参数</p><h2>每一步，为什么向这里走？</h2></div><p>同一条更新规则，学习率不同，可以走向谷底，也可以来回振荡。</p></div>
+      <div class="gradient-workspace">
+        <figure class="diagram surface-diagram"><canvas id="gradient-canvas" role="img" aria-label="二次损失曲面与梯度下降轨迹的三维投影">L 等于二分之一乘以 w1 平方加四倍 w2 平方，最小值位于两个参数都为零。</canvas><figcaption><span class="legend-key query">圆点：当前参数</span><span class="legend-key key">折线：已走过的路径</span><span>纵轴：损失 L</span></figcaption></figure>
+        <div class="inspector gradient-inspector">
+          <p class="formula loss-formula">L(w₁,w₂) = ½(w₁² + 4w₂²)</p>
+          <div class="control-heading"><label for="learning-rate">学习率 η</label><output id="learning-rate-value" for="learning-rate">0.15</output></div>
+          <input id="learning-rate" type="range" min="0.02" max="0.65" step="0.01" value="0.15">
+          <p class="subtle" id="stability-hint">0 &lt; η &lt; 0.5：这个曲面上的固定步长更新会收敛。</p>
+          <div class="control-heading rotation-heading"><label for="surface-rotation">观察角度</label><output id="surface-rotation-value" for="surface-rotation">−35°</output></div>
+          <input id="surface-rotation" type="range" min="-180" max="180" step="1" value="-35">
+          <div class="button-row"><button id="gradient-step" type="button" class="primary">走一步</button><button id="gradient-play" type="button">播放</button><button id="gradient-reset" type="button">重置</button></div>
+          <dl class="gradient-values"><div><dt>已更新</dt><dd><span id="step-value">0</span> 步</dd></div><div><dt>参数 [w₁, w₂]</dt><dd id="parameter-value" class="mono">[2.000, 1.200]</dd></div><div><dt>梯度 [w₁, 4w₂]</dt><dd id="gradient-value" class="mono">[2.000, 4.800]</dd></div><div><dt>当前损失 L</dt><dd id="loss-value" class="mono">4.880000</dd></div></dl>
+          <p id="gradient-status" class="status" aria-live="polite">从 [2, 1.2] 出发；先预测下一步的位置。</p>
+        </div>
+      </div>
+      <div class="lesson-notes"><div><span class="note-number">一步更新</span><h3 class="formula">w ← w − η∇L(w)</h3><p>梯度是局部上升最快的方向。负梯度给出下降方向，但步子太大仍然可能越过谷底。</p></div><div><span class="note-number">比较三个步长</span><h3>试试 0.15、0.50 和 0.60。</h3><p>每次先重置。这里 w₁ 每步乘以 (1−η)，w₂ 每步乘以 (1−4η)。0.50 会等幅振荡，0.60 会发散；这个阈值不适用于所有模型。</p></div></div>
+      <p class="scope-note">显示范围为 |w₁|、|w₂| ≤ 3；越界会暂停并保留实际参数值。每次训练最多 80 步，梯度范数小于 10⁻⁴ 时提前停止。旋转只改变视角，不改变数学状态。</p>
+    </section>
+    <footer><span>下一步：用手算解释你刚刚看到的变化。</span><a href="../lessons/01-tensor-to-attention.md">阅读第一课 ↗</a><small>课程文档为 Markdown，建议在编辑器中打开。</small></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
