@@ -85,6 +85,58 @@ All objects here are scalars. The labels “old” and “new” identify bias v
 
 For old bias 1, derivative 4/3, and eta 0.1, the learner's pending calculation is \(1-0.1\times4/3\). An overly large learning rate can raise the loss; the derivative describes local change. Correction note: the teaching loss expands to \(b^2-2b/3+3\); the previous coefficient -4/3 was an algebra typo, while the slope table and derivative at 1 were correct.
 
+### Partial derivative: change one parameter at a time
+
+Use the unitless toy loss $L(w,b)=(w-2)^2+(b-1)^2$. Read $L(w,b)$ as “L of w and b.” It takes two scalar parameters and returns one scalar loss. There are no indices or vector axes in this example.
+
+Read $\partial L/\partial w$ as “the partial derivative of L with respect to w.” It is one scalar local rate of change: vary w and keep b fixed. The symbol $\partial$ is read “partial.” The notation names a derivative; it is not ordinary division of two numbers.
+
+For example, holding b=3 gives $L(w,3)=(w-2)^2+4$. The 4 stays constant as w changes. Similarly, $\partial L/\partial b$ varies b while keeping w fixed. Both partial derivatives are scalar outputs evaluated at a specified pair (w,b). With physical units, each has loss units divided by the corresponding parameter's units.
+
+For a calculation, hold w=4. Then $L(4,b)=4+(b-1)^2=b^2-2b+5$. Differentiate with respect to b: the three terms give $2b$, $-2$, and $0$. Thus the partial derivative with respect to b at w=4 is $2b-2$. The fixed number 5 contributes zero slope. This is a one-variable calculation along the fixed-w slice of the two-variable loss.
+
+### Gradient: collect the partial derivatives
+
+For the same unitless loss, represent the parameter pair [w,b] as a 1×2 row vector. Its gradient is also a 1×2 row vector, in the same order:
+
+$$\nabla L=\left[\frac{\partial L}{\partial w},\frac{\partial L}{\partial b}\right]=[2(w-2),2(b-1)].$$
+
+Read $\nabla L$ as “the gradient of L”; $\nabla$ is called “nabla.” Evaluate both components at the same parameter pair. At w=1,b=3, the gradient is [-2,4]. Each component measures change when its own parameter changes and the other stays fixed.
+
+Gradient descent subtracts eta times this gradient from the old parameter row. Eta, $\eta>0$, is the scalar learning rate. Multiplication by eta scales each component, and subtraction matches entries; there is no dot product. Both new parameters use derivatives evaluated at the old pair. A sufficiently small positive learning rate lowers this smooth loss when the gradient is nonzero; an arbitrary finite step is not guaranteed to do so.
+
+### Chain rule and backpropagation: a scalar chain
+
+Let $z=2x$ and $L=z^2$. The input x, intermediate value z, and output L are unitless scalars with no indices. The computation graph is $x\to z\to L$.
+
+The chain rule combines the local derivatives:
+
+$$\frac{dL}{dx}=\frac{dL}{dz}\frac{dz}{dx}=(2z)(2)=4z=8x.$$
+
+Read $dL/dz$ as “the derivative of L with respect to z.” Each derivative here is a scalar local rate of change. Multiplication uses the local derivatives at matching values: at x=3, z=6, so the product is 12×2=24. For a small input change, $\Delta L\approx24\Delta x$ near x=3. Delta, $\Delta$, means a change; this is an approximation for finite changes. For x changing from 3 to 3.01, the exact loss increase is 0.2404, while the linear approximation is 0.24.
+
+Backpropagation computes derivatives by moving backward through a computation graph and applying the chain rule. This single chain shows one basic step. More general graphs can branch; contributions from different paths to the same variable must be added.
+
+### Multiple paths: add their contributions
+
+Let $u=x^2$, $v=3x$, and $L=u+v$. Read u and v as the letters “u” and “v”; they are intermediate values. Here x, u, v, and L are unitless scalars, with no indices. The graph has two paths, $x\to u\to L$ and $x\to v\to L$.
+
+Both paths change when x changes. The multivariable chain rule adds the contributions:
+
+$$\frac{dL}{dx}=\frac{\partial L}{\partial u}\frac{du}{dx}+\frac{\partial L}{\partial v}\frac{dv}{dx}=1(2x)+1(3)=2x+3.$$
+
+The partial derivative with respect to u keeps v fixed, and vice versa. Since L=u+v, each partial derivative is 1. At x=2, the paths contribute 4 and 3, so the total derivative is 7. Multiply local derivatives along a path, then add contributions from all paths to the same variable. This assumes the stated differentiable graph contains all dependencies of L on x.
+
+### Backpropagation for one scalar prediction
+
+Use $\hat y=wx+b$ and the single-sample squared error $L=(\hat y-y)^2$. Here x is the fixed input, y the fixed observed target, w the adjustable weight, b the adjustable bias, and $\hat y$ (read “y hat”) the prediction. All are unitless scalars in this toy example; there are no indices, sums, or averages.
+
+Local derivatives are $\partial L/\partial\hat y=2(\hat y-y)$, $\partial\hat y/\partial w=x$ with b fixed, and $\partial\hat y/\partial b=1$ with w fixed. The observed x,y stay fixed throughout. Multiply along each parameter's path to the loss:
+
+$$\frac{\partial L}{\partial w}=\frac{\partial L}{\partial\hat y}\frac{\partial\hat y}{\partial w},\qquad \frac{\partial L}{\partial b}=\frac{\partial L}{\partial\hat y}\frac{\partial\hat y}{\partial b}.$$
+
+Collect these two scalar derivatives in [w,b] order to obtain a 1×2 gradient row. Evaluate both at the same parameter pair. This example connects the chain rule to training; it does not introduce any hidden averaging or factor of one half in the loss.
+
 ## 数、向量、矩阵与张量
 
 | 符号 | 常见读法与含义 | 类型、形状或例子 |

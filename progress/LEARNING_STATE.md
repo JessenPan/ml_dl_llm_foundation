@@ -1,6 +1,6 @@
 # 学习状态
 
-Last updated: 2026-11-17 (study session ended; partial derivative question is the next checkpoint).
+Last updated: 2026-11-17 (weighted-path derivative 4x+5 correct; scalar model backpropagation application pending).
 
 ## 已知偏好
 
@@ -15,12 +15,12 @@ Last updated: 2026-11-17 (study session ended; partial derivative question is th
 ## 当前定位
 
 - 路线：基础桥接 → 整合后的 ML（含周志华西瓜书 16 章）→ DL → LLM；Andrew Ng-inspired concepts are woven into the same route. Planned length is about 26–30 weeks, adjusted by mastery.
-- Current module: B4, partial derivative introduction is the next checkpoint. One-variable derivative, finite differences, learning-rate updates, and several loss calculations have evidence; multivariable gradients remain untaught.
-- 当前/最近正式学习会话：[2026-11-14-01](sessions/2026-11-14-01.md)。
-- 会话状态：已结束；用户在 2026-11-17 说“end the conversation”。
+- Current module: B5, backpropagation applied to a prediction model. Learner correctly gave weighted-path derivative 4x+5 for u=x², v=5x, L=2u+v with outer derivatives supplied. Introduced scalar prediction ŷ=wx+b and loss L=(ŷ-y)² with local derivative formulas; numerical model gradient pending. B4 focused gradient checkpoint is complete; earlier gaps and learner requests to proceed after reported slips remain recorded.
+- Current study session: [2026-11-17-01](sessions/2026-11-17-01.md). Previous session: [2026-11-14-01](sessions/2026-11-14-01.md).
+- Session status: in progress; the learner said “start the study” after ending the previous session.
 - 已完成的准备：学习助手约定、课程设计、基础范围对照与桥接计划、诊断题、Attention 预览课与演示初始化。
 - 已完成的学习模块：无。准备材料不计入学习完成。
-- Next step: resume with $L(w,b)=(w-2)^2+(b-1)^2$; explain that $\partial L/\partial w$ holds $b$ fixed, then compare $\partial L/\partial b$. The final partial-derivative question was not answered.
+- Next step: for ŷ=wx+b, L=(ŷ-y)², at x=2,y=3,w=1,b=0, compute gradient [∂L/∂w,∂L/∂b] in [w,b] order, shape 1×2. Supply local formulas 2(ŷ-y), x, and 1, but no numerical gradient. Hold observed x,y fixed; this is one sample's squared error, with no averaging. Do not require skipped retries or elementary arithmetic drills.
 
 ## 掌握证据
 
@@ -40,7 +40,27 @@ Last updated: 2026-11-17 (study session ended; partial derivative question is th
 | Comparing tested bias values | 可独立完成 (table choice) | Correctly chose b=0 as a loss-lowering move from b=1, over the offered b=2 alternative; no claim of optimality |
 | Average slope | 需提示 (successful repair) | On 2026-11-15 correctly wrote reverse changes −7/3 and −1 and ratio +7/3 after correction of prior forward setup; independent stability unassessed |
 | Shrinking-interval trend | 需提示 (language support) | Correctly identified 1.33… from table after clarification of “approach” and “the slopes”; independent derivative explanation pending |
-| Derivative sign and direction | 可独立完成 (direction choices) | Correctly chose decrease for positive derivative and increase for a hypothetical negative derivative; verbal justification pending |
+| Derivative sign and direction | 可独立完成 (direction choices and delayed negative-sign recall) | On 2026-11-17 independently answered “increase b because the slope is negative” for L'(b)=-2; sufficiently small change specified in the question. Earlier positive-sign direction choice also correct |
+| Partial derivative: fixed parameter | 可独立完成 (immediate identification) | On 2026-11-17 answered “the parameter w must stay fixed” for the partial derivative with respect to b, after the converse example. Independent full explanation and delayed recall pending |
+| Partial derivative: numerical evaluation | 可独立完成 (expression supplied) | Correctly answered 4 from supplied 2b-2 at b=3,w=4; no working submitted. Independent symbolic derivation and transfer to w pending |
+| Polynomial derivative rules | 可独立完成 (submitted polynomial) | Differentiated their incorrectly expanded w²-2w+8 as 2w-2 and correctly evaluated it at w=1 as 0. The expansion error is separate |
+| Squared-binomial expansion | Correction supplied; extra check skipped by request | Submitted (w-2)²+4=w²-2w+8; corrected expansion explained. Learner reports mastery and a slip, requests moving on. Recheck withdrawn; no broad algebra gap inferred |
+| Gradient update | 可独立完成 (numerical variation) | Correctly answered [1.2,2.6] from [1,3]-0.1[-2,4]; working not submitted. Independent explanation of shape/order pending |
+| Loss change after gradient step | 可独立完成 | Correctly stated loss decreases by 1.32 from 5 to 3.68 |
+| Gradient component order | 可独立完成 (after terminology clarification) | Correctly identified 4 as the b component in [-2,4] under [w,b] order |
+| Gradient shape | 可独立完成 | Correctly answered 1×2 for the gradient row vector |
+| Gradient variation | 可独立完成 | Correctly answered [0,-2] at [w,b]=[2,0] in [w,b] order |
+| Final two-parameter update | 可独立完成 (after correction) | Retry [2,0.2] correct after tutor isolated an extra-2 arithmetic slip |
+| Chain rule local derivatives | 可独立完成 | Correctly gave dL/dz=2z and dz/dx=2 |
+| Chain rule product | 可独立完成 (product) | Correctly simplified (2z)(2) to 4z; tutor supplied the substitution z=2x giving 8x. Correction: earlier wording credited learner with that substitution without a submitted answer |
+| Chain rule numerical variation | 可独立完成 | Correctly evaluated 8x at x=3 as 24 |
+| Chain rule local meaning | 可独立完成 | Correctly stated Δx=0.01 gives approximate ΔL=0.24 when dL/dx=24 |
+| Computation graph reverse order | 可独立完成 | Correctly identified dL/dz as the first reverse-mode local derivative |
+| Reverse-mode multiplication | 可独立完成 (supplied values) | Correctly answered 24 for supplied local values 12×2; full changed-graph derivation pending |
+| Full chain-rule variation | Correction supplied; retry skipped by request | Answered 32 without working; reference 36 supplied. Learner reports a slip and asks to proceed; independent corrected derivation unverified |
+| Multiple-path sum derivative | 可独立完成 (symbolic) | For u=x², v=5x, L=u+v, correctly wrote L=x²+5x and L'=2x+5. Numerical value 15 at x=2 incorrect; tutor supplied 9; cause unknown without substitution working |
+| Weighted-path backpropagation | 可独立完成 (outer derivatives supplied) | Correctly answered 4x+5 for u=x², v=5x, L=2u+v, after outer derivatives 2 and 1 were explained |
+| Scalar model backpropagation | 未评估 | Local derivatives supplied for ŷ=wx+b and L=(ŷ-y)²; gradient at x=2,y=3,w=1,b=0 pending |
 | Scalar gradient descent update | 可独立完成 (numerical transfer) | Correct 3.4 for old bias 3, derivative −2, eta 0.2 without supplied substitution; working absent. Earlier answer 13/15 used supplied expression |
 | Zero-derivative update | 可独立完成 (immediate recognition) | Correctly said the bias remains unchanged when the scalar gradient descent rule uses derivative zero |
 | Zero derivative versus minimum | 可独立完成 (value-table choice) | Correctly chose F(b)=b² as the minimum-at-zero curve over G(b)=-b² |
@@ -67,3 +87,4 @@ Last updated: 2026-11-17 (study session ended; partial derivative question is th
 - 2026-11-14 / Curriculum scope / The learner requests all Watermelon Book chapters and Andrew Ng-inspired ML/DL/LLM concepts to be mixed into the current route, with no separate track / Route expanded to one integrated 26–30 week plan / Use INTEGRATED_ROUTE.md as canonical order.
 - 2026-11-14 / B0 索引变式 / 用户独立计算 \(2\times80+5\times3+10=185\)，结果正确；算术与变式可独立完成，符号口头解释仍未评估 / 推进到 B1 点积，用两个分量解释向量。
 - 2026-11-17 / B4 partial derivative checkpoint / 用户结束学习；此前正确完成有限差分、MSE 与一元更新练习；partial derivative 的固定变量问题未作答 / 记录已保存 / 下次从 (L(w,b)) 的 \partial L/\partial w 继续。
+- 2026-11-17 / New B4 session / Learner requested “start the study”; one due derivative-sign recall precedes the saved partial-derivative checkpoint / Answer and feeling pending; no new mastery claim / See current session.
