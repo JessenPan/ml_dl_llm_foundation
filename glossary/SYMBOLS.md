@@ -17,6 +17,74 @@
 
 $wx$ 表示两个标量相乘，先乘再加 $b$。单次预测时固定 $w,b$，替换 $x$；训练时可以调整 $w,b$。固定项是模型假设的一部分，不意味着现实中零面积房屋有这个价格。
 
+## B2: predictions for several samples
+
+In this unitless teaching example, \(X=[[1,2],[3,4],[2,1]]\), \(\mathbf{w}=[2,3]\), and \(b=1\).
+
+| Symbol | Read as | Meaning and shape |
+| --- | --- | --- |
+| \(X\) | capital X | Input matrix, 3 × 2: three samples as rows, two features as columns |
+| \(\mathbf{w}\) | w | Shared weights as a row vector, 1 × 2 |
+| \(\mathbf{w}^{T}\) | w transpose | Same weights as a column vector, 2 × 1 |
+| \(X\mathbf{w}^{T}\) | X times w transpose | Matrix multiplication; one dot product for each row of X; output 3 × 1 |
+| \(b\) | b | Scalar bias; add the same value to every entry of the 3 × 1 product |
+| \(\hat{\mathbf{y}}\) | y hat | Prediction column, 3 × 1, in the same sample order as X |
+
+Here \(\hat{\mathbf{y}}=X\mathbf{w}^{T}+b\) uses scalar broadcasting: the addition means adding b to each product entry. This explicit column output does not change the convention that input samples occupy rows.
+
+## B3: signed prediction error
+
+For one sample, define \(e=\hat y-y\). This is prediction minus actual target. Some sources use the opposite sign, so check the definition.
+
+| Symbol | Read as | Meaning and shape |
+| --- | --- | --- |
+| \(y\) | y | Actual observed target; scalar for this regression example |
+| \(\hat y\) | y hat | Model prediction for the same sample; scalar |
+| \(e\) | e | Signed prediction error; scalar, with the same units as y |
+
+Multiply the inputs by their weights and add the bias to get \(\hat y\); then subtract the observed target \(y\) to get \(e\). A negative e means the prediction is too low; a positive e means it is too high; zero means it matches this target. The current numerical examples are unitless teaching data.
+
+### Squared error and mean squared error
+
+The squared error for one sample is \(e^2=(\hat y-y)^2\), a nonnegative scalar. Parentheses matter: when e is -4, its square is \((-4)^2=16\).
+
+Mean squared error (MSE) is the average of squared errors across the specified samples. In the three-sample teaching example, predictions [9,19,8] and assigned targets [10,16,8] give errors [-1,3,0]:
+
+\[
+\mathrm{MSE}=\frac{(-1)^2+3^2+0^2}{3}.
+\]
+
+The denominator is 3 because all three samples are included. MSE is one scalar loss: a number used to measure prediction error. With physical targets, squared error and MSE have squared target units; this example is unitless.
+
+## B4: average slope before derivatives
+
+\(L(b)\), read “L of b,” is the scalar MSE when b is the varying scalar input. Hold the observed inputs, weights, and targets fixed. The parentheses indicate a function input, not multiplication.
+
+Average slope is change in loss divided by change in b. For the interval from b=0 to b=1:
+
+\[
+\text{average slope}=\frac{L(1)-L(0)}{1-0}
+=\frac{10/3-3}{1}=\frac13.
+\]
+
+Subtract in the same order in numerator and denominator; the two b values must differ. This is a slope over an interval, not the derivative at a point. In this toy example all quantities are unitless; with physical quantities the slope has loss units per unit of b.
+
+### Derivative at one bias value
+
+\(L'(1)\), read “L prime at one,” is the derivative of L with respect to its scalar input b, evaluated at b=1. It is a scalar local rate of change, with loss units per unit of b (unitless here). It is not the value L(1) itself. Other weights, inputs, and targets stay fixed.
+
+For the smooth teaching loss \(L(b)=b^2-2b/3+3\), average slopes from b=1 over intervals that shrink to zero approach 4/3; hence \(L'(1)=4/3\). The numerical table illustrates this fact; a finite table alone does not prove a limit. With a positive derivative, a sufficiently small increase in b increases loss and a sufficiently small decrease lowers it. This is local information and does not guarantee improvement for an arbitrary finite step.
+
+### One-parameter gradient descent
+
+\[
+b_{\text{new}}=b_{\text{old}}-\eta L'(b_{\text{old}}).
+\]
+
+All objects here are scalars. The labels “old” and “new” identify bias values before and after one update. Eta, \(\eta>0\), is the learning rate: it scales the derivative and controls the parameter change. It is not generally the parameter-change magnitude itself. With only one adjustable parameter, gradient descent uses its derivative; the other weights and observed data stay fixed.
+
+For old bias 1, derivative 4/3, and eta 0.1, the learner's pending calculation is \(1-0.1\times4/3\). An overly large learning rate can raise the loss; the derivative describes local change. Correction note: the teaching loss expands to \(b^2-2b/3+3\); the previous coefficient -4/3 was an algebra typo, while the slope table and derivative at 1 were correct.
+
 ## 数、向量、矩阵与张量
 
 | 符号 | 常见读法与含义 | 类型、形状或例子 |

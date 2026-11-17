@@ -1,6 +1,6 @@
 # 学习状态
 
-最后更新：2026-11-14（新增英语教学偏好；B0 仍等待首次作答）
+Last updated: 2026-11-17 (study session ended; partial derivative question is the next checkpoint).
 
 ## 已知偏好
 
@@ -15,21 +15,42 @@
 ## 当前定位
 
 - 路线：基础桥接 → 整合后的 ML（含周志华西瓜书 16 章）→ DL → LLM；Andrew Ng-inspired concepts are woven into the same route. Planned length is about 26–30 weeks, adjusted by mastery.
-- 当前模块：基础桥接 B0，输入、参数与预测值的首次讲解。
+- Current module: B4, partial derivative introduction is the next checkpoint. One-variable derivative, finite differences, learning-rate updates, and several loss calculations have evidence; multivariable gradients remain untaught.
 - 当前/最近正式学习会话：[2026-11-14-01](sessions/2026-11-14-01.md)。
-- 会话状态：进行中；用户以“start the study”启动首次实际教学。
+- 会话状态：已结束；用户在 2026-11-17 说“end the conversation”。
 - 已完成的准备：学习助手约定、课程设计、基础范围对照与桥接计划、诊断题、Attention 预览课与演示初始化。
 - 已完成的学习模块：无。准备材料不计入学习完成。
-- 下一步：等待面积变为 80 平方米、系数为 2 万元/平方米、固定项为 10 万元时的预测计算；尚未收到作答，不提前给出练习答案。核对后验证符号角色，再安排上下标；B0 尚未完成。
+- Next step: resume with $L(w,b)=(w-2)^2+(b-1)^2$; explain that $\partial L/\partial w$ holds $b$ fixed, then compare $\partial L/\partial b$. The final partial-derivative question was not answered.
 
 ## 掌握证据
 
 | 能力 | 状态 | 实际证据 |
 | --- | --- | --- |
-| 直觉解释 | 未评估 | 待实际回答 |
-| 符号与张量形状 | 未评估 | 待实际回答 |
-| 推导与手算 | 未评估 | 待实际回答 |
-| 变式与迁移 | 未评估 | 待实际回答 |
+| Explanation | 可独立完成 (row-by-column core operation) | Described multiplying a row by a column and adding; separate output entries and shape still need verification |
+| Symbols and shapes | 需提示 (B1 recognition) | Correctly selected 2 × 1 from two options for the transpose of a 1 × 2 row; independent explanation unassessed |
+| Prediction output shape | 需提示 (focused follow-up) | Correctly gave one column and then five rows for five samples, yielding 5 × 1; independent full explanation unassessed |
+| 推导与手算 | 可独立完成（B0 变式） | 正确计算 \(2\times80+5\times3+10=185\) |
+| B1 dot product plus bias | 可独立完成 (numerical answer) | Correct answer 20 for three entries without supplied expansion; working not submitted. Earlier answer 23 used supplied expansion |
+| B2 matrix entry calculation | 需提示 | After an incorrect initial product, correctly corrected the second row to 43,50 following a first-row example and explicit row–column selection. Working absent |
+| Predictions for multiple samples | 可独立完成 (two numerical predictions) | Correctly answered 19,8 for samples 2 and 3 after a sample-1 example; no expansion supplied for requested rows. Working and shape explanation absent |
+| Signed prediction error | 需提示 (successful follow-up) | After correcting 19−16 to +3, learner correctly wrote 8−12=−4. Independent stability not established |
+| MSE calculation | 可独立完成 (numerical variation) | Correctly answered 17/3=5.66… for new predictions without a supplied error expansion; working not submitted. Cancellation explanation recorded separately below |
+| Why square errors | 可独立完成 | Correctly explained that signed errors can cancel when added directly; English wording does not affect mathematical credit |
+| Trainable parameters | 可独立完成 (immediate recognition) | Correctly answered weights and bias after explanation and a two-option question; independent loss/parameter explanation pending |
+| Comparing tested bias values | 可独立完成 (table choice) | Correctly chose b=0 as a loss-lowering move from b=1, over the offered b=2 alternative; no claim of optimality |
+| Average slope | 需提示 (successful repair) | On 2026-11-15 correctly wrote reverse changes −7/3 and −1 and ratio +7/3 after correction of prior forward setup; independent stability unassessed |
+| Shrinking-interval trend | 需提示 (language support) | Correctly identified 1.33… from table after clarification of “approach” and “the slopes”; independent derivative explanation pending |
+| Derivative sign and direction | 可独立完成 (direction choices) | Correctly chose decrease for positive derivative and increase for a hypothetical negative derivative; verbal justification pending |
+| Scalar gradient descent update | 可独立完成 (numerical transfer) | Correct 3.4 for old bias 3, derivative −2, eta 0.2 without supplied substitution; working absent. Earlier answer 13/15 used supplied expression |
+| Zero-derivative update | 可独立完成 (immediate recognition) | Correctly said the bias remains unchanged when the scalar gradient descent rule uses derivative zero |
+| Zero derivative versus minimum | 可独立完成 (value-table choice) | Correctly chose F(b)=b² as the minimum-at-zero curve over G(b)=-b² |
+| 变式与迁移 | 可独立完成（B0 变式） | 将单特征预测改为两个特征、第二个样本并算出 185 |
+
+| Finite-difference derivative bridge | 可独立完成 (one nearby interval) | Correctly calculated 6.01 for b=3 to 3.01, close to derivative 6 |
+
+| Finite-difference shrinking pattern | 可独立完成 | Correctly calculated 6.01 and 6.001 as intervals shrank and explained that average slope gets closer to derivative |
+| h versus learning rate eta | 可独立完成 (one example) | Correctly identified h=0.02 from x=5→5.02 after distinction; h is input change and eta is update step |
+| Derivative quotient with h | 可独立完成 | Correctly calculated 0.0601/0.01=6.01 and evaluated 2x+h=6.01; exact derivative limit at x=3 is 6 |
 
 ## 当前疑问与易错点
 
@@ -44,3 +65,5 @@
 - 2026-11-14 / B0 首次教学 / 通过面积 50 平方米、系数 2、固定项 10 的教学例子引入预测式；发起面积 80 平方米的计算练习 / 待首次作答，体感未反馈 / 见当前会话检查点。
 - 2026-11-14 / Language preference / The learner requests simple English for future learning, while keeping standard technical vocabulary even when it is difficult or rare / Preference recorded; no new mathematical assessment / Continue the current B0 checkpoint in simple English.
 - 2026-11-14 / Curriculum scope / The learner requests all Watermelon Book chapters and Andrew Ng-inspired ML/DL/LLM concepts to be mixed into the current route, with no separate track / Route expanded to one integrated 26–30 week plan / Use INTEGRATED_ROUTE.md as canonical order.
+- 2026-11-14 / B0 索引变式 / 用户独立计算 \(2\times80+5\times3+10=185\)，结果正确；算术与变式可独立完成，符号口头解释仍未评估 / 推进到 B1 点积，用两个分量解释向量。
+- 2026-11-17 / B4 partial derivative checkpoint / 用户结束学习；此前正确完成有限差分、MSE 与一元更新练习；partial derivative 的固定变量问题未作答 / 记录已保存 / 下次从 (L(w,b)) 的 \partial L/\partial w 继续。

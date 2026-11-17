@@ -1,6 +1,6 @@
 # 复习队列
 
-目前为空：尚未实际学习概念；课程计划与流程设置不生成复习任务。
+已加入一个 B0 小知识点：加权预测与索引变式。
 
 建议节奏：概念学习完成后的第 1、3、7、14 天，每次 5–10 分钟。实际日期由真实学习日计算；答错时先补齐缺口，再决定下次间隔。
 
@@ -8,5 +8,19 @@
 
 | 概念 | 学习日期 | 下次复习日期 | 提取问题 | 上次作答证据 | 状态 |
 | --- | --- | --- | --- | --- | --- |
+| 加权预测与索引变式 | 2026-11-14 | 2026-11-15 | 给出两个特征和两个权重，说明 x_j^(i) 指什么并算出一个预测 | 独立算出 2×80+5×3+10=185；未口头解释上下标 | 待复习 |
+| Dot product and transpose | 2026-11-14 | 2026-11-15 | Given two row vectors, write the transpose, state each shape, and calculate a dot product without an expanded expression | Independently answered 20 for three entries and described row-by-column multiplication and summation. Selected transpose shape 2 × 1 from options; separate matrix output entries need verification | Pending review |
+| Matrix output entries | 2026-11-14 | 2026-11-15 | Select a named row and column, write the matching products, and calculate one output entry | Initial three new entries incorrect; correctly corrected second row to 43,50 with first-row example and explicit row–column support. Independent transfer pending | Needs support; review pending |
+| Predictions for multiple samples | 2026-11-14 | 2026-11-15 | Explain rows as samples and columns as features, state the prediction shape, and calculate a prediction for a new row using shared weights and bias | Correctly answered 19,8 for two new rows; identified one output column, then five rows with follow-up for five samples. Independent full shape explanation pending | Pending review |
+| Signed prediction error | 2026-11-14 | 2026-11-15 | Define prediction minus actual; calculate one positive and one negative error and explain the signs | Initially 19−16=−3; after correction to +3, correctly wrote 8−12=−4 on immediate follow-up | Successful supported follow-up; review pending |
+| Mean squared error (MSE) and parameters | 2026-11-14 | 2026-11-15 | Given three predictions and targets, set up MSE, calculate it, explain squaring, and distinguish adjusted parameters from calculated loss | Independently answered new MSE 17/3, explained cancellation, and identified adjusted weights/bias. Correctly chose b=0 to lower loss from a supplied table; working absent | Pending review |
+| Average slope and subtraction order | 2026-11-14 | 2026-11-16 | Calculate average slope in both directions between two points; use matching subtraction order and explain each change sign | 2026-11-15: after earlier correction, explicitly wrote reverse changes −7/3 and −1 and ratio +7/3 correctly. Sign interpretation supplied by tutor; delayed stability unassessed | Supported repair completed; short review next day |
+| Derivative intuition | 2026-11-15 | 2026-11-16 | Explain average slope versus slope at a point, read L'(1), and choose a small loss-lowering direction from its sign | Correctly identified 1.33… trend after vocabulary support; chose decrease for positive derivative and increase for hypothetical negative derivative. Independent verbal explanation pending | Pending review; supported intuition |
+| Learning rate and scalar gradient descent | 2026-11-15 | 2026-11-16 | Set up one bias update, explain either derivative sign and a zero derivative, and explain why a large step can raise loss | Correct numerical variation 3.4 independently and zero-update recognition. Recognized excessive movement and curve turn; tutor clarifies overshoot past minimum. Working absent; zero derivative versus minimum boundary completed | Pending review |
 
 这是一份本地学习记录，不会主动发送通知或创建日历任务。用户说“复习”时，先查看到期条目；没有条目则从已学且有证据的概念中选择。
+| Direct derivative calculation | 2026-11-15 | 2026-11-16 | Use supplied derivative rules for b² and cb to calculate the derivative of the actual scalar loss, including at its minimum | Correctly calculated F'(3)=6 and L'(1)=4/3 from supplied expressions; derivative at b=1/3 pending | Pending review |
+| Derivative as local change | 2026-11-15 | 2026-11-17 | Compute nearby finite-difference slopes, explain why they approach derivative 2b, and distinguish h from learning rate eta | Correctly calculated 6.01 and 6.001 and explained average slope gets closer to derivative. Confused h with eta when formal notation introduced; distinction pending | Needs support; review pending |
+| h versus learning rate eta | 2026-11-16 | 2026-11-18 | Given two nearby inputs, identify h; distinguish it from eta in a parameter update | Correctly identified h=0.02 for x=5→5.02 after explanation; distinction supported in one example | Short review next day |
+| Derivative quotient with h | 2026-11-17 | 2026-11-18 | For f(x)=x² at x=3 and h=0.01, calculate the quotient and explain the exact derivative as h→0 | Correctly calculated 6.01 and evaluated 2x+h=6.01; exact derivative limit at x=3 is 6 | Supported; short review pending |
+| Partial derivative | 2026-11-17 | 2026-11-18 | Given a two-variable loss, identify which variable is held fixed in a partial derivative | New concept; answer pending | Pending review |
