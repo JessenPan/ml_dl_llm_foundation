@@ -1,6 +1,6 @@
 # 学习状态
 
-Last updated: 2026-11-17 (learner asks why path derivatives multiply; full model-gradient exercise paused for explanation).
+Last updated: 2026-11-18 (session ended by request; resume why derivatives multiply along the model path).
 
 ## 已知偏好
 
@@ -17,10 +17,11 @@ Last updated: 2026-11-17 (learner asks why path derivatives multiply; full model
 - 路线：基础桥接 → 整合后的 ML（含周志华西瓜书 16 章）→ DL → LLM；Andrew Ng-inspired concepts are woven into the same route. Planned length is about 26–30 weeks, adjusted by mastery.
 - Current module: B5, backpropagation applied to a prediction model. Learner correctly gave weighted-path derivative 4x+5 for u=x², v=5x, L=2u+v with outer derivatives supplied. Introduced scalar prediction ŷ=wx+b and loss L=(ŷ-y)² with local derivative formulas; numerical model gradient pending. B4 focused gradient checkpoint is complete; earlier gaps and learner requests to proceed after reported slips remain recorded.
 - Current study session: [2026-11-17-01](sessions/2026-11-17-01.md). Previous session: [2026-11-14-01](sessions/2026-11-14-01.md).
-- Session status: in progress; the learner said “start the study” after ending the previous session.
+- Session status: ended on 2026-11-18 (Asia/Shanghai); the learner said “end the study.” Actual duration and overall feeling were not reported.
 - 已完成的准备：学习助手约定、课程设计、基础范围对照与桥接计划、诊断题、Attention 预览课与演示初始化。
 - 已完成的学习模块：无。准备材料不计入学习完成。
 - Next step: resolve learner's explicit question about multiplying along each path. Focus only on w→ŷ→L with b,x,y fixed. Tutor supplies ŷ=2, local rates 2 and -2, and Δŷ=2Δw, ΔL≈-2Δŷ≈-4Δw at x=2,y=3,w=1,b=0. These values are explanation, not learner evidence. After understanding is checked, introduce the b path and resume the full gradient. Do not require skipped retries or elementary arithmetic drills.
+- End-of-session evidence: gradient calculations, loss comparison, local chain-rule steps, reverse order, and weighted-path derivative have evidence. Understanding the latest model-path explanation and full model gradient remain unassessed; B5 is not complete.
 
 ## 掌握证据
 
@@ -89,3 +90,4 @@ Last updated: 2026-11-17 (learner asks why path derivatives multiply; full model
 - 2026-11-14 / B0 索引变式 / 用户独立计算 \(2\times80+5\times3+10=185\)，结果正确；算术与变式可独立完成，符号口头解释仍未评估 / 推进到 B1 点积，用两个分量解释向量。
 - 2026-11-17 / B4 partial derivative checkpoint / 用户结束学习；此前正确完成有限差分、MSE 与一元更新练习；partial derivative 的固定变量问题未作答 / 记录已保存 / 下次从 (L(w,b)) 的 \partial L/\partial w 继续。
 - 2026-11-17 / New B4 session / Learner requested “start the study”; one due derivative-sign recall precedes the saved partial-derivative checkpoint / Answer and feeling pending; no new mastery claim / See current session.
+- 2026-11-18 / Session ended / Learner requested “end the study”; saved B4–B5 evidence and the unresolved model-path explanation / No extra assessment; no duration inferred / Resume Δw→Δŷ→ΔL before the full model gradient.

@@ -1,6 +1,6 @@
 # 逐次学习记录
 
-Current session: [2026-11-17-01 · From derivatives to partial derivatives](2026-11-17-01.md) (in progress). Previous session: [2026-11-14-01](2026-11-14-01.md) (ended). Correction: this index previously still marked the ended session as in progress. Course planning does not count as completed learning.
+Latest session: [2026-11-17-01 · From derivatives to partial derivatives](2026-11-17-01.md) (ended on 2026-11-18). Previous session: [2026-11-14-01](2026-11-14-01.md) (ended). Next start: why local derivatives multiply along w→ŷ→L. Course planning does not count as completed learning.
 
 实际开始学习后，使用 [会话模板](../../templates/SESSION.md) 建立 `YYYY-MM-DD-NN.md`，日期按 Asia/Shanghai，序号取当天尚未使用的编号，不覆盖已有文件。
 
