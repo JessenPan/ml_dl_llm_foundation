@@ -1,6 +1,6 @@
 # 学习状态
 
-Last updated: 2026-11-18 (session ended by request; resume why derivatives multiply along the model path).
+Last updated: 2026-11-18 (session ended by request; B6 probability and cross-entropy checkpoint saved).
 
 ## 已知偏好
 
@@ -15,13 +15,13 @@ Last updated: 2026-11-18 (session ended by request; resume why derivatives multi
 ## 当前定位
 
 - 路线：基础桥接 → 整合后的 ML（含周志华西瓜书 16 章）→ DL → LLM；Andrew Ng-inspired concepts are woven into the same route. Planned length is about 26–30 weeks, adjusted by mastery.
-- Current module: B5, backpropagation applied to a prediction model. Learner correctly gave weighted-path derivative 4x+5 for u=x², v=5x, L=2u+v with outer derivatives supplied. Introduced scalar prediction ŷ=wx+b and loss L=(ŷ-y)² with local derivative formulas; numerical model gradient pending. B4 focused gradient checkpoint is complete; earlier gaps and learner requests to proceed after reported slips remain recorded.
-- Current study session: [2026-11-17-01](sessions/2026-11-17-01.md). Previous session: [2026-11-14-01](sessions/2026-11-14-01.md).
-- Session status: ended on 2026-11-18 (Asia/Shanghai); the learner said “end the study.” Actual duration and overall feeling were not reported.
+- Current module: B6, probability and loss. B5 scalar backpropagation is complete for the worked example: at x=2,y=3,w=1,b=0, the learner computed gradient [-4,-2], updated [1,0] to [1.4,0.2] with η=.1, and checked new ŷ=3, L=0. B4 focused gradient checkpoint is also complete; earlier gaps and learner requests to proceed after reported slips remain recorded.
+- Current study session: [2026-11-18-02](sessions/2026-11-18-02.md). Previous session: [2026-11-18-01](sessions/2026-11-18-01.md).
+- Session status: ended on 2026-11-18 (Asia/Shanghai) at the learner's request. Actual duration and overall feeling are not reported.
 - 已完成的准备：学习助手约定、课程设计、基础范围对照与桥接计划、诊断题、Attention 预览课与演示初始化。
 - 已完成的学习模块：无。准备材料不计入学习完成。
-- Next step: resolve learner's explicit question about multiplying along each path. Focus only on w→ŷ→L with b,x,y fixed. Tutor supplies ŷ=2, local rates 2 and -2, and Δŷ=2Δw, ΔL≈-2Δŷ≈-4Δw at x=2,y=3,w=1,b=0. These values are explanation, not learner evidence. After understanding is checked, introduce the b path and resume the full gradient. Do not require skipped retries or elementary arithmetic drills.
-- End-of-session evidence: gradient calculations, loss comparison, local chain-rule steps, reverse order, and weighted-path derivative have evidence. Understanding the latest model-path explanation and full model gradient remain unassessed; B5 is not complete.
+- Next step: begin with a short B6 review when appropriate, then distinguish Bernoulli and categorical probability models with one small table-based example. Do not require skipped retries or elementary arithmetic drills.
+- End-of-session evidence: gradient calculations, loss comparison, local chain-rule steps, reverse order, weighted-path derivative, model-path explanation, full model gradient, parameter update, and post-update loss check have evidence. B5 scalar model backpropagation is complete for the worked example. B6 probability reading, negative log-loss direction, mean loss, confident-error transfer, and one-hot categorical cross-entropy also have independent evidence.
 
 ## 掌握证据
 
@@ -61,8 +61,8 @@ Last updated: 2026-11-18 (session ended by request; resume why derivatives multi
 | Full chain-rule variation | Correction supplied; retry skipped by request | Answered 32 without working; reference 36 supplied. Learner reports a slip and asks to proceed; independent corrected derivation unverified |
 | Multiple-path sum derivative | 可独立完成 (symbolic) | For u=x², v=5x, L=u+v, correctly wrote L=x²+5x and L'=2x+5. Numerical value 15 at x=2 incorrect; tutor supplied 9; cause unknown without substitution working |
 | Weighted-path backpropagation | 可独立完成 (outer derivatives supplied) | Correctly answered 4x+5 for u=x², v=5x, L=2u+v, after outer derivatives 2 and 1 were explained |
-| Scalar model backpropagation | 未评估 | Local derivatives supplied for ŷ=wx+b and L=(ŷ-y)²; gradient at x=2,y=3,w=1,b=0 pending |
-| Meaning of multiplying path derivatives | 需讲解 / 未验证 | Learner explicitly does not understand the process; tutor explains w→ŷ→L with successive small changes. Full-gradient question deferred |
+| Scalar model backpropagation | 可独立完成（当前示例） | Learner independently propagated both small-change paths, combined them into `∇L=[-4,-2]` in `[w,b]` order, and updated `[1,0]` with `η=.1` to `[1.4,.2]`; final prediction/loss check pending |
+| Meaning of multiplying path derivatives | 可独立完成（简化说明） | Learner correctly propagated `Δw=0.01` through `w→ŷ→L`, gave `Δŷ=0.02` and `ΔL≈-0.04`, and chose that the first step changes the input to the second step |
 | Scalar gradient descent update | 可独立完成 (numerical transfer) | Correct 3.4 for old bias 3, derivative −2, eta 0.2 without supplied substitution; working absent. Earlier answer 13/15 used supplied expression |
 | Zero-derivative update | 可独立完成 (immediate recognition) | Correctly said the bias remains unchanged when the scalar gradient descent rule uses derivative zero |
 | Zero derivative versus minimum | 可独立完成 (value-table choice) | Correctly chose F(b)=b² as the minimum-at-zero curve over G(b)=-b² |
@@ -91,3 +91,10 @@ Last updated: 2026-11-18 (session ended by request; resume why derivatives multi
 - 2026-11-17 / B4 partial derivative checkpoint / 用户结束学习；此前正确完成有限差分、MSE 与一元更新练习；partial derivative 的固定变量问题未作答 / 记录已保存 / 下次从 (L(w,b)) 的 \partial L/\partial w 继续。
 - 2026-11-17 / New B4 session / Learner requested “start the study”; one due derivative-sign recall precedes the saved partial-derivative checkpoint / Answer and feeling pending; no new mastery claim / See current session.
 - 2026-11-18 / Session ended / Learner requested “end the study”; saved B4–B5 evidence and the unresolved model-path explanation / No extra assessment; no duration inferred / Resume Δw→Δŷ→ΔL before the full model gradient.
+- 2026-11-18 / B6 session started / Introduced event, class probabilities, and the probability assigned to the correct class using a three-class image example / Answer and feeling pending / Next: read one correct-class probability, then introduce negative log loss.
+- 2026-11-18 / B6 correct-class probability / Given true class `bird` and probabilities `0.25, 0.60, 0.15`, learner independently selected `p=0.15` / Can read the probability of the true event; feeling not reported / Next: introduce `-ln(p)` log loss.
+- 2026-11-18 / B6 log-loss intuition / Given correct-class probabilities `0.8` and `0.2`, learner independently selected the higher-probability model as having lower log loss / Qualitative relationship verified; numerical logarithm calculation not assessed / Next: mean negative log loss over multiple examples or pause.
+- 2026-11-18 / B6 mean log loss / Given two examples with `p=0.5` and individual losses `0.69`, learner independently calculated the mean as `0.69` / Mean-loss calculation verified; no exact logarithm calculation assessed / Next: transfer comparison about a low-probability correct class.
+- 2026-11-18 / B6 confident-error transfer / Compared `[0.9,0.9]` with `[1.0,0.1]`; learner independently selected B because the `p=0.1` term has larger log loss / Variant reasoning verified / Next: categorical vector and one-hot loss form.
+- 2026-11-18 / B6 one-hot cross-entropy / Given class order `[cat,dog,bird]`, true class `bird`, and probabilities `[0.2,0.3,0.5]`, learner independently gave target `[0,0,1]` and selected `p_true=0.5` / Vector loss reading verified / Next: Bernoulli versus categorical.
+- 2026-11-18 / Session ended / Learner requested “end the study”; B6 probability, log loss, mean loss, confident-error transfer, and one-hot cross-entropy checkpoints were saved / Feeling and duration not reported / Next: short B6 review when due, then Bernoulli versus categorical.
