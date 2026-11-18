@@ -1,6 +1,6 @@
 # 学习状态
 
-Last updated: 2026-11-17 (weighted-path derivative 4x+5 correct; scalar model backpropagation application pending).
+Last updated: 2026-11-17 (learner asks why path derivatives multiply; full model-gradient exercise paused for explanation).
 
 ## 已知偏好
 
@@ -20,7 +20,7 @@ Last updated: 2026-11-17 (weighted-path derivative 4x+5 correct; scalar model ba
 - Session status: in progress; the learner said “start the study” after ending the previous session.
 - 已完成的准备：学习助手约定、课程设计、基础范围对照与桥接计划、诊断题、Attention 预览课与演示初始化。
 - 已完成的学习模块：无。准备材料不计入学习完成。
-- Next step: for ŷ=wx+b, L=(ŷ-y)², at x=2,y=3,w=1,b=0, compute gradient [∂L/∂w,∂L/∂b] in [w,b] order, shape 1×2. Supply local formulas 2(ŷ-y), x, and 1, but no numerical gradient. Hold observed x,y fixed; this is one sample's squared error, with no averaging. Do not require skipped retries or elementary arithmetic drills.
+- Next step: resolve learner's explicit question about multiplying along each path. Focus only on w→ŷ→L with b,x,y fixed. Tutor supplies ŷ=2, local rates 2 and -2, and Δŷ=2Δw, ΔL≈-2Δŷ≈-4Δw at x=2,y=3,w=1,b=0. These values are explanation, not learner evidence. After understanding is checked, introduce the b path and resume the full gradient. Do not require skipped retries or elementary arithmetic drills.
 
 ## 掌握证据
 
@@ -61,6 +61,7 @@ Last updated: 2026-11-17 (weighted-path derivative 4x+5 correct; scalar model ba
 | Multiple-path sum derivative | 可独立完成 (symbolic) | For u=x², v=5x, L=u+v, correctly wrote L=x²+5x and L'=2x+5. Numerical value 15 at x=2 incorrect; tutor supplied 9; cause unknown without substitution working |
 | Weighted-path backpropagation | 可独立完成 (outer derivatives supplied) | Correctly answered 4x+5 for u=x², v=5x, L=2u+v, after outer derivatives 2 and 1 were explained |
 | Scalar model backpropagation | 未评估 | Local derivatives supplied for ŷ=wx+b and L=(ŷ-y)²; gradient at x=2,y=3,w=1,b=0 pending |
+| Meaning of multiplying path derivatives | 需讲解 / 未验证 | Learner explicitly does not understand the process; tutor explains w→ŷ→L with successive small changes. Full-gradient question deferred |
 | Scalar gradient descent update | 可独立完成 (numerical transfer) | Correct 3.4 for old bias 3, derivative −2, eta 0.2 without supplied substitution; working absent. Earlier answer 13/15 used supplied expression |
 | Zero-derivative update | 可独立完成 (immediate recognition) | Correctly said the bias remains unchanged when the scalar gradient descent rule uses derivative zero |
 | Zero derivative versus minimum | 可独立完成 (value-table choice) | Correctly chose F(b)=b² as the minimum-at-zero curve over G(b)=-b² |
