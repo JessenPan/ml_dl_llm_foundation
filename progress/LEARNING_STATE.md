@@ -1,6 +1,6 @@
 # 学习状态
 
-Last updated: 2026-11-19 (B6 binary cross-entropy phrase explained; transfer check pending).
+Last updated: 2026-11-19 (B6 binary cross-entropy comparison completed; signed loss expressions pending).
 
 ## 已知偏好
 
@@ -20,7 +20,7 @@ Last updated: 2026-11-19 (B6 binary cross-entropy phrase explained; transfer che
 - Session status: in progress, started 2026-11-18 and continued 2026-11-19 (Asia/Shanghai). Actual duration and learner feeling are not reported.
 - 已完成的准备：学习助手约定、课程设计、基础范围对照与桥接计划、诊断题、Attention 预览课与演示初始化。
 - 已完成的学习模块：无。准备材料不计入学习完成。
-- Next step: compare binary cross-entropy when the true label is urgent and predicted `p` is `0.9` versus `0.6`. Short B6 reviews are due on 2026-11-19.
+- Next step: write the binary cross-entropy expressions `-ln(0.9)` and `-ln(0.6)` for `y=1`, without evaluating the logarithms. Short B6 reviews are due on 2026-11-19.
 - End-of-session evidence: gradient calculations, loss comparison, local chain-rule steps, reverse order, weighted-path derivative, model-path explanation, full model gradient, parameter update, and post-update loss check have evidence. B5 scalar model backpropagation is complete for the worked example. B6 probability reading, negative log-loss direction, mean loss, confident-error transfer, and one-hot categorical cross-entropy also have independent evidence.
 
 ## 掌握证据
@@ -119,3 +119,4 @@ Last updated: 2026-11-19 (B6 binary cross-entropy phrase explained; transfer che
 - 2026-11-19 / B6 chain-rule reciprocal retry / Learner independently wrote `-1/(3-p)` for `ln(3-p)` / Negative reciprocal notation verified / Returned to solving the Bernoulli MLE derivative equation.
 - 2026-11-19 / B6 Bernoulli MLE derivation / Learner independently solved `3/p - 1/(1-p)=0` to `p=3/4` / Complete worked MLE path verified, including agreement with `k/n`; concavity check supplied / Next: connect likelihood, NLL, and binary cross-entropy.
 - 2026-11-19 / B6 vocabulary / Learner asked for the simple-English meaning of “binary cross-entropy” / Explained two labels plus a probability-mismatch penalty and connected it to binary NLL / Next: compare two correct-label probabilities.
+- 2026-11-19 / B6 binary cross-entropy comparison / Learner correctly selected `p=0.9` as lower loss than `p=0.6` for true urgent `y=1` / Correct qualitative transfer; corrected `y` versus `p` wording / Next: write both signed loss expressions.

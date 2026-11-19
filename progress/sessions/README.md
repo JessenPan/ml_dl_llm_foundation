@@ -1,6 +1,6 @@
 # 逐次学习记录
 
-Latest session: [2026-11-18-03 · Bernoulli and categorical distributions](2026-11-18-03.md) (in progress). Previous session: [2026-11-18-02](2026-11-18-02.md) (ended). Next checkpoint: compare binary cross-entropy for two correct-label probabilities. Course planning does not count as completed learning.
+Latest session: [2026-11-18-03 · Bernoulli and categorical distributions](2026-11-18-03.md) (in progress). Previous session: [2026-11-18-02](2026-11-18-02.md) (ended). Next checkpoint: write two signed binary cross-entropy expressions for true label `y=1`. Course planning does not count as completed learning.
 
 实际开始学习后，使用 [会话模板](../../templates/SESSION.md) 建立 `YYYY-MM-DD-NN.md`，日期按 Asia/Shanghai，序号取当天尚未使用的编号，不覆盖已有文件。
 
