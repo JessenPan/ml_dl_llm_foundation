@@ -1,6 +1,6 @@
 # 学习状态
 
-Last updated: 2026-11-18 (session ended by request; B6 probability and cross-entropy checkpoint saved).
+Last updated: 2026-11-19 (B6 binary cross-entropy phrase explained; transfer check pending).
 
 ## 已知偏好
 
@@ -16,11 +16,11 @@ Last updated: 2026-11-18 (session ended by request; B6 probability and cross-ent
 
 - 路线：基础桥接 → 整合后的 ML（含周志华西瓜书 16 章）→ DL → LLM；Andrew Ng-inspired concepts are woven into the same route. Planned length is about 26–30 weeks, adjusted by mastery.
 - Current module: B6, probability and loss. B5 scalar backpropagation is complete for the worked example: at x=2,y=3,w=1,b=0, the learner computed gradient [-4,-2], updated [1,0] to [1.4,0.2] with η=.1, and checked new ŷ=3, L=0. B4 focused gradient checkpoint is also complete; earlier gaps and learner requests to proceed after reported slips remain recorded.
-- Current study session: [2026-11-18-02](sessions/2026-11-18-02.md). Previous session: [2026-11-18-01](sessions/2026-11-18-01.md).
-- Session status: ended on 2026-11-18 (Asia/Shanghai) at the learner's request. Actual duration and overall feeling are not reported.
+- Current study session: [2026-11-18-03](sessions/2026-11-18-03.md). Previous session: [2026-11-18-02](sessions/2026-11-18-02.md).
+- Session status: in progress, started 2026-11-18 and continued 2026-11-19 (Asia/Shanghai). Actual duration and learner feeling are not reported.
 - 已完成的准备：学习助手约定、课程设计、基础范围对照与桥接计划、诊断题、Attention 预览课与演示初始化。
 - 已完成的学习模块：无。准备材料不计入学习完成。
-- Next step: begin with a short B6 review when appropriate, then distinguish Bernoulli and categorical probability models with one small table-based example. Do not require skipped retries or elementary arithmetic drills.
+- Next step: compare binary cross-entropy when the true label is urgent and predicted `p` is `0.9` versus `0.6`. Short B6 reviews are due on 2026-11-19.
 - End-of-session evidence: gradient calculations, loss comparison, local chain-rule steps, reverse order, weighted-path derivative, model-path explanation, full model gradient, parameter update, and post-update loss check have evidence. B5 scalar model backpropagation is complete for the worked example. B6 probability reading, negative log-loss direction, mean loss, confident-error transfer, and one-hot categorical cross-entropy also have independent evidence.
 
 ## 掌握证据
@@ -98,3 +98,24 @@ Last updated: 2026-11-18 (session ended by request; B6 probability and cross-ent
 - 2026-11-18 / B6 confident-error transfer / Compared `[0.9,0.9]` with `[1.0,0.1]`; learner independently selected B because the `p=0.1` term has larger log loss / Variant reasoning verified / Next: categorical vector and one-hot loss form.
 - 2026-11-18 / B6 one-hot cross-entropy / Given class order `[cat,dog,bird]`, true class `bird`, and probabilities `[0.2,0.3,0.5]`, learner independently gave target `[0,0,1]` and selected `p_true=0.5` / Vector loss reading verified / Next: Bernoulli versus categorical.
 - 2026-11-18 / Session ended / Learner requested “end the study”; B6 probability, log loss, mean loss, confident-error transfer, and one-hot cross-entropy checkpoints were saved / Feeling and duration not reported / Next: short B6 review when due, then Bernoulli versus categorical.
+- 2026-11-18 / B6 session started / Introduced Bernoulli and categorical distributions using support request examples / Answer and feeling not reported / Next: check why one probability does not determine a three-class distribution.
+- 2026-11-18 / B6 fixed class count / Learner correctly answered no but cited uncertainty about the number of categories / Clarified the three classes and showed two valid splits; independent explanation still pending / Next: compare with exactly two classes.
+- 2026-11-18 / B6 binary complement / Learner independently gave `0.4` for the only other category when billing had probability `0.6` / Correct numerical answer; independent three-class explanation still pending / Connected the complement to binary log loss; transfer check pending.
+- 2026-11-18 / B6 binary cross-entropy / Learner independently gave `-ln(0.2)` for `p=0.8` and true label `0` / Correct probability and loss expression; introduced the two-term formula / Next: apply the formula to true label `1`.
+- 2026-11-18 / B6 binary cross-entropy for label `1` / Learner gave `ln(0.8)`, the correct term inside the brackets / Showed how the outer minus gives `-ln(0.8)`; independent full expression not yet verified / Next: try a new probability with label `1`.
+- 2026-11-18 / B6 signed loss and likelihood / Learner correctly gave `-ln(0.3)` for true label `1` after sign feedback / Introduced likelihood for a fixed ordered pair of independent outcomes / Next: calculate likelihood for two urgent requests.
+- 2026-11-18 / B6 likelihood calculation / Learner independently calculated `0.64` for two urgent requests at `p=0.8` / Introduced a comparison that holds the observed labels fixed and varies `p` / Next: compare likelihoods for an urgent and a not-urgent request.
+- 2026-11-18 / B6 mixed-label likelihood / Learner gave `0.25` and `0.64` and chose `p=0.8`; the second value matches the earlier both-urgent pair / Showed the second factor is `1-p` for the not-urgent label, which changes the higher-likelihood choice / Next: identify both factors for a new value of `p`.
+- 2026-11-18 / B6 likelihood factors / Learner correctly gave `0.7` and `0.3` in order for the mixed pair after feedback on the earlier example / Factor selection correct on retry; model comparison still pending / Next: compare the two products for `p=0.7` and `p=0.5`.
+- 2026-11-18 / B6 model comparison and MLE / Learner correctly selected `p=0.5` when both products were supplied / Introduced maximizing likelihood over all allowed parameter values / Next: find the maximum for two urgent requests.
+- 2026-11-19 / B6 MLE boundary / Learner independently selected `p=1` for two urgent observations and explained why `p^2` is largest there / Boundary maximum verified; introduced `L(p)=p^k(1-p)^(n-k)` and `p_hat=k/n` for mixed datasets / Next: compute the estimate for 3 urgent out of 4.
+- 2026-11-19 / B6 hat notation / Learner asked about `p_hat`; explained that the hat marks an estimate from data, unlike `y_hat`, which marks a prediction / Added `p_hat` to the glossary / Next: compute the dataset estimate for 3 urgent out of 4.
+- 2026-11-19 / B6 Bernoulli MLE fraction / Learner independently explained `p_hat` and calculated `3/4=0.75` / Interpretation and numerical estimate verified / Introduced log-likelihood as an equivalent maximization objective / Next: write the log-likelihood for the same dataset.
+- 2026-11-19 / B6 log-likelihood rules / Learner expanded `p^3(1-p)` with a plus sign and did not know the product-log step / Corrected to `p^3-p^4`; explained `ln(ab)=ln(a)+ln(b)` and `ln(p^a)=a ln(p)` / Next: apply the rules to a squared example.
+- 2026-11-19 / B6 product and power log transfer / Learner independently wrote `2ln(p)+2ln(1-p)` for `p^2(1-p)^2` / Both log rules verified on a variation / Next: return to the 3-urgent, 1-not-urgent dataset.
+- 2026-11-19 / B6 log-likelihood transfer / Learner independently wrote `3ln(p)+ln(1-p)` for `p^3(1-p)` / Dataset expression verified / Next: differentiate the log-likelihood before solving for its maximum.
+- 2026-11-19 / B6 chain-rule sign / Learner asked why `ln(1-p)` has a negative derivative / Explained outer derivative times inner derivative and the decreasing-input intuition / Next: apply the rule to `ln(2-p)`.
+- 2026-11-19 / B6 reciprocal notation / Learner gave `-(1/2-p)` for the derivative of `ln(2-p)` / Negative sign correct; corrected the denominator to `-1/(2-p)` and explained the notation difference / Next: try `ln(3-p)`.
+- 2026-11-19 / B6 chain-rule reciprocal retry / Learner independently wrote `-1/(3-p)` for `ln(3-p)` / Negative reciprocal notation verified / Returned to solving the Bernoulli MLE derivative equation.
+- 2026-11-19 / B6 Bernoulli MLE derivation / Learner independently solved `3/p - 1/(1-p)=0` to `p=3/4` / Complete worked MLE path verified, including agreement with `k/n`; concavity check supplied / Next: connect likelihood, NLL, and binary cross-entropy.
+- 2026-11-19 / B6 vocabulary / Learner asked for the simple-English meaning of “binary cross-entropy” / Explained two labels plus a probability-mismatch penalty and connected it to binary NLL / Next: compare two correct-label probabilities.

@@ -228,6 +228,7 @@ $$\frac{\partial L}{\partial W}=X^\top G\in\mathbb R^{d\times h},\qquad\frac{\pa
 | $\mathbb E_{X\sim p}[f(X)]$ | 按分布 $p$ 求期望 | 离散情况为 $\sum_xp(x)f(x)$，连续情况用积分 |
 | $\operatorname{Var}(X)$ | $X$ 的方差 | $\mathbb E[(X-\mathbb EX)^2]$ |
 | $\bar x$ | x bar，样本均值 | $\frac1n\sum_i x_i$，由有限观测计算；与总体期望区分 |
+| $\hat p$ | p hat，estimated probability parameter | The hat marks an estimate from observed data; in the Bernoulli MLE example, $\hat p=k/n$ |
 | $\operatorname{Cov}(X,Y)$ | 协方差 | $\mathbb E[(X-\mathbb EX)(Y-\mathbb EY)]$，反映线性共同变化 |
 | $\rho_{XY}$ | rho，Pearson 相关系数 | $\operatorname{Cov}(X,Y)/(\sigma_X\sigma_Y)$；要求两个方差有限且非零，取值在 $[-1,1]$ |
 | $\operatorname{Bernoulli}(p)$ | 伯努利分布 | 0/1 结果，取 1 的概率为 $p$；sigmoid 常用于输出这个概率参数 |
